@@ -18,7 +18,7 @@ var mods_obj;
 (function refreshData() {
   deps_obj = JSON.parse(fs.readFileSync(DEPENCENCY_FILE).toString());
   mods_obj = JSON.parse(fs.readFileSync(MODULE_MAINTAINERS_FILE).toString());
-  //setTimeout(refreshData, 5000);
+  setTimeout(refreshData, 5000);
 }());
 
 
@@ -41,10 +41,6 @@ function fullDeps(name) {
 
   const deps = [];
   deps_obj[name].forEach((item) => recurse(item, deps));
-/* debug:start */
-if (deps.length > 700)
-  process._rawDebug(`${name}: ${deps.length}`);
-/* debug:stop */
 
   return deps;
 }
